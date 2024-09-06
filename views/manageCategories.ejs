@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Categories</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            color: #006064;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .table {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-add-category {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="text-center">Manage Categories</h1>
+            <!-- Add New Category Button -->
+            <a href="/admin/addCategory" class="btn btn-primary btn-add-category">Add Category</a>
+        </div>
+
+        <!-- Categories Table -->
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <td><%= category.name %></td>
+                        <td>
+                            <!-- Edit Category Form -->
+                            <form action="/admin/editCategory" method="POST" class="form-inline">
+                                <input type="hidden" name="categoryId" value="<%= category._id %>">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="categoryName" value="<%= category.name %>" required>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <!-- Soft Delete Category Form -->
+                            <form action="/admin/deleteCategory" method="POST" class="<%= category.deleted ? 'd-none' : '' %>">
+                                <input type="hidden" name="categoryId" value="<%= category._id %>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        
+                            <!-- Restore Category Form -->
+                            <form action="/admin/restoreCategory" method="POST" class="<%= category.deleted ? '' : 'd-none' %>">
+                                <input type="hidden" name="categoryId" value="<%= category._id %>">
+                                <button type="submit" class="btn btn-primary">Restore</button>
+                            </form>
+                        </td>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

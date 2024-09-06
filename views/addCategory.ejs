@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css">
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #1E90FF; /* Eastern Blue */
+            border-color: #1E90FF;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a7bb9;
+            border-color: #1a7bb9;
+        }
+
+        .form-control {
+            border-color: #1E90FF;
+            box-shadow: none;
+        }
+
+        .form-control:focus {
+            border-color: #1E90FF;
+            box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
+        }
+
+        .card {
+            border: 1px solid #1E90FF;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #1E90FF;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            border-bottom: 1px solid #ffffff;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-body {
+            background-color: #f8f9fa;
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-5 {
+            margin-top: 3rem;
+        }
+
+        .mt-3 {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Add New Category</h2>
+            </div>
+            <div class="card-body">
+                <form action="/admin/addCategory" method="POST">
+                    <div class="form-group">
+                        <label for="categoryName" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="categoryName" name="name" placeholder="Enter category name" required>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Add Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/path/to/bootstrap.js"></script>
+</body>
+</html>
